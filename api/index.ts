@@ -2,8 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { graphqlHTTP } = require("express-graphql");
 
-const { ruruHTML } = require("ruru/server");
-
 const { createMiddleware } = require("@mswjs/http-middleware");
 
 const handlers = require("../src/handlers");
@@ -24,7 +22,7 @@ app.use(
 // Serve the GraphiQL IDE.
 app.get("/", (_req, res) => {
 	res.type("html");
-	res.end(ruruHTML({ endpoint: "/graphql" }));
+	res.end("<h1>Hello World</h1>"););
 });
 
 app.use(createMiddleware(...handlers));
