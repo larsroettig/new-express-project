@@ -1,5 +1,5 @@
 const { buildSchema } = require("graphql");
-const { ratings } = require("./src/db.js");
+const { ratings } = require("../src/db.js");
 
 const schema = buildSchema(`
   type Review {
