@@ -22,7 +22,7 @@ app.use(
 // Serve the GraphiQL IDE.
 app.get("/", (_req, res) => {
 	res.type("html");
-	res.end("<h1>Hello World</h1>"););
+	res.end("<h1>Hello World</h1>");
 });
 
 app.use(createMiddleware(...handlers));

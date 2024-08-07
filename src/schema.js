@@ -1,31 +1,38 @@
 const { buildSchema } = require("graphql");
-const { ratings } = require("../src/db.js");
+const { ratings } = require("./db.js");
 
 const schema = buildSchema(`
   type Review {
-    review_id: String
-    rating: Int
-    reviewer: String
-    review_date: String
-    review_text: String
-  }
+  review_id: ID!
+  rating: Int!
+  reviewer: String!
+  review_date: String!
+  review_text: String!
+}
 
-  type Reviews {
-    sku: String
-    average_rating: Float
-    reviews: [Review]
-  }
+# Define the Product type
+type Product {
+  sku: String!
+  name: String!
+  average_rating: Float!
+  reviews: [Review]!
+}
 
-  type Query {
-    reviews(sku: [String]): Reviews
-  }
-`);
+type Query {
+   reviews(sku: [String]): [Product]
+}`);
 
 const root = {
 	reviews: ({ sku }) => {
-		const data = ratings.find((product) => sku.includes(product.sku));
-	    return data;
-    },
+		const data = [];
+		ratings.forEach((product) => {
+			if (sku.includes(product.sku)) {
+				data.push(product);
+			}
+		});
+
+		return data;
+	},
 };
 
 module.exports = { schema, root };
