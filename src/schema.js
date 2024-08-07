@@ -23,7 +23,7 @@ type Query {
 }`);
 
 const root = {
-	reviews: ({ sku }) => {
+    productsReviews: ({ sku }) => {
 		const data = [];
 		ratings.forEach((product) => {
 			if (sku.includes(product.sku)) {
