@@ -11,7 +11,7 @@ const schema = buildSchema(`
 }
 
 # Define the Product type
-type Product {
+type ProductsReview {
   sku: String!
   name: String!
   average_rating: Float!
@@ -19,7 +19,7 @@ type Product {
 }
 
 type Query {
-   reviews(sku: [String]): [Product]
+   productsReviews(sku: [String]): [ProductsReview]
 }`);
 
 const root = {
